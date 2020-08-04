@@ -1,0 +1,13 @@
+<idea-plugin>
+    <id>ru.phism.intellij-teso-plugin</id>
+    <name>The Elder Scrolls Online Support</name>
+    <vendor email="philipp@phism.ru" url="https://me.phism.ru/">Filipp Smorygo</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+    </actions>
+</idea-plugin>
