@@ -1,0 +1,172 @@
+{
+  parserClass='ru.phism.intellij.teso.documentation.DocumentationParser'
+  psiPackage='ru.phism.intellij.teso.documentation.psi'
+  psiImplPackage='ru.phism.intellij.teso.documentation.psi.impl'
+
+  elementTypeHolderClass='ru.phism.intellij.teso.documentation.DocumentationParserTypes'
+  elementTypeClass='ru.phism.intellij.teso.documentation.psi.DocumentationElementType'
+  psiClassPrefix="Documentation"
+  psiImplClassSuffix="GenImpl"
+
+  tokenTypeClass='ru.phism.intellij.teso.documentation.psi.DocumentationTokenType'
+
+  implements = 'ru.phism.intellij.teso.documentation.psi.DocumentationPsiElement'
+  extends = 'ru.phism.intellij.teso.documentation.psi.impl.DocumentationPsiElementImpl'
+
+  tokens = [
+    H1 = "h1."
+    H2 = "h2."
+    H3 = "h3."
+    H4 = "h4."
+    H5 = "h5."
+    H6 = "h6."
+
+    RETURNS = "RETURNS"
+    ATTRIBUTE = "ATTRIBUTE"
+    SCRIPT_ARGUMENTS = "SCRIPT_ARGUMENTS"
+    USES_VARIABLE_RETURNS = "USES_VARIABLE_RETURNS"
+    SCRIPT_ARGUMENTS="SCRIPT_ARGUMENTS"
+    OBJECT_INHERITANCE="OBJECT_INHERITANCE"
+
+    VM_FUNCTIONS = "VM_FUNCTIONS"
+    GLOBAL_VARIABLES = "GLOBAL_VARIABLES"
+    GAME_API = "GAME_API"
+    OBJECT_API = "OBJECT_API"
+    EVENTS = "EVENTS"
+    UI_XML_LAYOUT = "UI_XML_LAYOUT"
+
+    LINE = "LINE"
+    H_CAPTION = "H_CAPTION"
+
+    L_CURLY='{'
+    R_CURLY='}'
+    L_PAREN='('
+    R_PAREN=')'
+    L_BRACKET='['
+    R_BRACKET=']'
+    COMMA=','
+    OR='|'
+    HASH='#'
+    SEMICOLON=":"
+    ELLIPSIS="..."
+    EQUALS="="
+    ASTERISK = "*"
+    ASTERISK_DOUBLE = "**"
+
+    LOCAL="local"
+    NILABLE="nilable"
+    PRIVATE="private"
+    PROTECTED="protected"
+    PROTECTED_ATTRIBUTES="protected-attributes"
+    PUBLIC="public"
+
+    IDENTIFIER='IDENTIFIER'
+    NUMBER='NUMBER'
+  ]
+}
+
+/*                    === root ===                        */
+file ::= section_declaration*
+
+private section_declaration ::=
+    toc_settings |
+    version_section |
+    vm_functions_section |
+    global_variables_section |
+    game_api_section |
+    object_api_section |
+    events_section |
+    ui_xml_layout_section
+
+toc_settings ::= L_CURLY LINE R_CURLY {
+    pin = 1
+    recoverWhile = toc_settings_recoverer
+}
+
+private toc_settings_recoverer ::= R_CURLY
+
+version_section ::= H1 H_CAPTION
+
+vm_functions_section ::= H2 VM_FUNCTIONS function_declaration*
+
+global_variables_section ::= H2 GLOBAL_VARIABLES global_enum*
+
+game_api_section ::= H2 GAME_API function_declaration*
+
+object_api_section ::= H2 OBJECT_API object_declaration*
+
+events_section ::= H2 EVENTS event_declaration*
+
+event_declaration ::= ASTERISK IDENTIFIER function_parameters?
+
+ui_xml_layout_section ::= H2 UI_XML_LAYOUT ui_xml_entry*
+
+ui_xml_entry ::= ui_xml_attribute | ui_xml_tag
+
+ui_xml_attribute ::= H4 H_CAPTION ui_xml_attribute_item*
+
+ui_xml_attribute_item ::= ASTERISK IDENTIFIER type
+
+ui_xml_tag ::= H5 H_CAPTION ui_xml_tag_item*
+
+private ui_xml_tag_item ::= ui_xml_tag_attribute | ui_xml_tag_trait | ui_xml_tag_script_arguments
+
+ui_xml_tag_attribute ::= ASTERISK ATTRIBUTE type IDENTIFIER
+
+ui_xml_tag_trait ::= ASTERISK L_BRACKET IDENTIFIER SEMICOLON trait_type_declaration R_BRACKET
+
+trait_type_declaration ::= IDENTIFIER (OR IDENTIFIER)*
+
+ui_xml_tag_script_arguments ::= ASTERISK SCRIPT_ARGUMENTS script_argument_list
+
+script_argument_list ::= script_argument (COMMA script_argument)*
+
+script_argument ::= LOCAL? IDENTIFIER script_argument_default_value?
+
+script_argument_default_value ::= EQUALS ELLIPSIS
+
+global_enum ::= H5 H_CAPTION global_enum_item*
+
+global_enum_item ::= ASTERISK IDENTIFIER
+
+object_declaration ::= H3 H_CAPTION object_inheritance_clause? function_declaration*
+
+object_inheritance_clause ::= OBJECT_INHERITANCE type descendant_types
+
+descendant_types ::= type_declaration (COMMA type_declaration)*
+
+function_declaration ::= ASTERISK IDENTIFIER visibility? function_parameters function_uses_clause? function_return_clause?
+
+visibility ::= ASTERISK (PRIVATE | PROTECTED | PROTECTED_ATTRIBUTES | PUBLIC) ASTERISK
+
+function_parameters ::= L_PAREN function_parameters_list R_PAREN
+
+function_parameters_list ::= function_parameter? (COMMA function_parameter)* {
+    pin = 1
+}
+
+function_parameter ::= parameter_with_type
+
+function_uses_clause ::= ASTERISK_DOUBLE USES_VARIABLE_RETURNS
+
+function_return_clause ::= ASTERISK_DOUBLE RETURNS function_return_list
+
+function_return_list ::= function_return_item (COMMA function_return_item)* {
+    pin = 1
+}
+
+function_return_item ::= parameter_with_type
+
+parameter_with_type ::= type parameter
+
+parameter ::= IDENTIFIER
+
+type ::= ASTERISK type_declaration ASTERISK
+
+type_declaration ::= single_type_declaration | complex_type_declaration
+
+single_type_declaration ::= IDENTIFIER type_qualifier?
+
+type_qualifier ::= SEMICOLON NILABLE
+
+complex_type_declaration ::= L_BRACKET IDENTIFIER (OR IDENTIFIER)* R_BRACKET type_qualifier?

@@ -1,0 +1,20 @@
+h2. Object API
+
+h3. AddOnManager
+* AddRelevantFilter(*string* _relevantFilter_)
+
+* GetAddOnDependencyInfo(*luaindex* _addOnIndex_, *luaindex* _addOnDependencyIndex_)
+** _Returns:_ *string* _name_, *bool* _exists_, *bool* _active_, *integer* _minVersion_, *integer* _version_
+
+* GetAddOnFilter()
+** _Returns:_ *string* _settingFilter_
+
+h3. AnimationObject
+Objects that inherit behavior from *AnimationObject*
+[AnimationObject3DRotate|#AnimationObject3DRotate], [AnimationObject3DTranslate|#AnimationObject3DTranslate], [AnimationObjectAlpha|#AnimationObjectAlpha], [AnimationObjectColor|#AnimationObjectColor], [AnimationObjectCustom|#AnimationObjectCustom], [AnimationObjectScale|#AnimationObjectScale], [AnimationObjectScroll|#AnimationObjectScroll], [AnimationObjectSize|#AnimationObjectSize], [AnimationObjectTexture|#AnimationObjectTexture], [AnimationObjectTextureRotate|#AnimationObjectTextureRotate], [AnimationObjectTextureSlide|#AnimationObjectTextureSlide], [AnimationObjectTranslate|#AnimationObjectTranslate]
+
+* GetAnimatedControl()
+** _Returns:_ *object* _animatedControl_
+
+* GetApplyToChildControlName()
+** _Returns:_ *string* _applyToChildControlName_

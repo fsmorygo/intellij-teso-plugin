@@ -1,0 +1,23 @@
+h2. Game API
+* GetCVar(*string* _CVarName_)
+** _Returns:_ *string* _value_
+
+* SetCVar(*string* _CVarName_, *string* _value_)
+
+* ResetSettingToDefault(*[SettingSystemType|#SettingSystemType]* _system_, *integer* _settingId_)
+
+* ResetToDefaultSettings(*[SettingSystemType|#SettingSystemType]* _system_)
+
+* GetClassIndexById(*integer* _classId_)
+** _Returns:_ *luaindex:nilable* _index_
+
+* SplitString(*string* _delims_, *string* _stringToSplit_)
+** _Uses variable returns..._
+** _Returns:_ *string* _strings_
+
+* GetUnitBankAccessBag(*string* _unitTag_)
+** _Returns:_ *[Bag|#Bag]:nilable* _bankBag_
+
+* OnSlotDownAndUp *private* (*luaindex* _actionSlotIndex_)
+
+* ClearAnchors *protected-attributes* ()

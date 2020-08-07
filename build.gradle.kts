@@ -74,3 +74,22 @@ tasks {
         })
     }
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+sourceSets {
+    main {
+        java.srcDir("src/main/gen")
+    }
+}
+
+kotlin {
+    sourceSets {
+        main {
+            kotlin.srcDir("src/main/gen")
+        }
+    }
+}

@@ -1,0 +1,9 @@
+FILE
+  DocumentationTocSettingsGenImpl(TOC_SETTINGS)
+    PsiElement({)('{')
+    PsiElement(LINE)('TOC:maxLevel=3')
+    PsiElement(})('}')
+  PsiWhiteSpace('\n')
+  DocumentationVersionSectionGenImpl(VERSION_SECTION)
+    PsiElement(h1.)('h1.')
+    PsiElement(H_CAPTION)(' ESO UI Documentation for API Version 100031')

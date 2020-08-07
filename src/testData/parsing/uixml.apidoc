@@ -1,0 +1,32 @@
+h2. UI XML Layout
+h4. Attributes:
+* addressMode *[TextureAddressMode|#TextureAddressMode]*
+* allowBringToTop *bool*
+* allowMarkupType *[AllowMarkupType|#AllowMarkupType]*
+* alpha *number*
+* anchorIndex *integer*
+* applyAlpha *bool*
+* applyToChildControlName *string*
+* autoAdjustTextureCoords *bool*
+* barAlignment *[BarAlignment|#BarAlignment]*
+
+h5. AlphaAnimation
+* [Inherits: AnimationBase|#AnimationBase]
+* [Child: endAlpha|#Attributes]
+* [Child: startAlpha|#Attributes]
+
+h5. Anchor
+* _attribute:_ *[AnchorPosition|#AnchorPosition]* _point_
+* _attribute:_ *[AnchorPosition|#AnchorPosition]* _relativePoint_
+* _attribute:_ *string* _relativeTo_
+* _attribute:_ *number* _offsetX_
+* _attribute:_ *number* _offsetY_
+* _attribute:_ *[AnchorConstrains|#AnchorConstrains]* _constrains_
+
+h5. UpdateFunction
+* [Inherits: OnSetUpdateFunction|#OnSetUpdateFunction]
+* ScriptArguments: local self, progress = ...
+
+h5. OnClicked
+* [Inherits: OnSetControlEventHandler|#OnSetControlEventHandler]
+* ScriptArguments: local self, button, ctrl, alt, shift, command = ...

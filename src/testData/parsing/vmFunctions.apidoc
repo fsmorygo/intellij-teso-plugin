@@ -1,0 +1,5 @@
+h2. VM Functions
+* ScriptBuildInfo()
+** _Returns:_ *table* _buildInfo_
+* LoadUntrustedString(*string* _script_)
+** _Returns:_ *number* _result_

@@ -1,0 +1,12 @@
+h2. Events
+* EVENT_ABILITY_COOLDOWN_UPDATED (*integer* _abilityId_)
+* EVENT_ABILITY_LIST_CHANGED
+* EVENT_ABILITY_PROGRESSION_RANK_UPDATE (*luaindex* _progressionIndex_, *integer* _rank_, *integer* _maxRank_, *integer* _morph_)
+* EVENT_ABILITY_PROGRESSION_RESULT (*[AbilityProgressionResult|#AbilityProgressionResult]* _reason_)
+* EVENT_ABILITY_PROGRESSION_XP_UPDATE (*luaindex* _progressionIndex_, *integer* _lastRankXP_, *integer* _nextRankXP_, *integer* _currentXP_, *bool* _atMorph_)
+* EVENT_ABILITY_REQUIREMENTS_FAIL (*integer* _errorId_)
+* EVENT_ACCEPT_SHARED_QUEST_RESPONSE
+* EVENT_ACHIEVEMENTS_SEARCH_RESULTS_READY
+* EVENT_ACHIEVEMENTS_UPDATED
+* EVENT_ACHIEVEMENT_AWARDED (*string* _name_, *integer* _points_, *integer* _id_, *string* _link_)
+* EVENT_ACHIEVEMENT_UPDATED (*integer* _id_)
