@@ -2,7 +2,7 @@ import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.markdownToHTML
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.0-rc"
     id("org.jetbrains.intellij") version "0.4.21"
     id("org.jetbrains.changelog") version "0.4.0"
     id("io.gitlab.arturbosch.detekt") version "1.10.0"
@@ -38,6 +38,10 @@ intellij {
     type = platformType
     downloadSources = platformDownloadSources.toBoolean()
     updateSinceUntilBuild = true
+
+    setPlugins(
+        "com.tang:1.3.4.157-IDEA202" // EmmyLua
+    )
 }
 
 detekt {
